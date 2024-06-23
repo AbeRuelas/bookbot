@@ -1,8 +1,13 @@
 def main():
     book_path = "books/frankenstein.txt"
-    text = get_book_text(book_path).lower()
+    text = get_book_text(book_path)
+    num_words = get_num_words(text)
     count_chars = count_characters(text)
     print(count_chars)
+
+def get_num_words(text):
+    words = text.split()
+    return len(words)
 
 def get_book_text(path):
     with open(path) as f:
@@ -13,10 +18,11 @@ def count_characters(text_file):
 
     for c in text_file:
         if c.isalpha():
-            if c in charDict:
-                charDict[c] += 1
+            low_c = c.lower()
+            if low_c in charDict:
+                charDict[low_c] += 1
             else:
-                charDict[c] = 1
+                charDict[low_c] = 1
     return charDict        
 main()
 

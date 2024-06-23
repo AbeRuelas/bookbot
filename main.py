@@ -6,11 +6,16 @@ def main():
     list_dicts = convert_dict(count_chars)
     sorted_lists = sort_on(list_dicts)
     
-    print(f'"-- Begin report of {book_path} --"')
-    print(f'"{num_words} words found in the document"')
+    print(f"-- Begin report of {book_path} --")
+    print(f"{num_words} words found in the document")
+    print()
     
     for item in sorted_lists:
-        print(f"The'{item['char']}' character was found {item['num']} times")
+        if not item['char'].isalpha():
+            continue
+        print(f"The' {item['char']}' character was found {item['num']} times")
+    
+    print("--- End report ---")
 
 def convert_dict(count_chars):
     return [{'char':key,'num':value} for key, value in count_chars.items()]
